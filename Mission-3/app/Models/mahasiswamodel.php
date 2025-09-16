@@ -6,18 +6,24 @@ use CodeIgniter\Model;
 class mahasiswamodel extends Model
 {
     protected $table = 'mahasiswa';
-    protected $primaryKey = 'nim';
-    protected $allowedFields = ['nim', 'nama', 'umur'];
+    protected $primaryKey = 'id'; // Asumsi primary key Anda adalah 'id'
+
+    // PASTIKAN BARIS INI ADA DAN LENGKAP
+    protected $allowedFields = ['nim', 'nama', 'umur', 'user_id'];
 
     public function getmahasiswa()
     {
-        // Kode ini sudah benar untuk mengambil data dari database
         return $this->findAll();
     }
 
     public function getMahasiswaByNim($nim)
     {
-        // Cari data berdasarkan kolom 'nim' dan ambil baris pertama
         return $this->where(['nim' => $nim])->first();
+    }
+
+    public function getMahasiswaByUserId($userId)
+    {
+        // Cari data di tabel mahasiswa berdasarkan kolom 'user_id'
+        return $this->where(['user_id' => $userId])->first();
     }
 }

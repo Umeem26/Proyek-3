@@ -28,16 +28,20 @@ class AuthController extends BaseController
         if ($user && password_verify($password, $user['password'])) {
             // Jika berhasil, simpan data user ke session
             $sessionData = [
-                'user_id'    => $user['id'],
-                'username'   => $user['username'],
-                'full_name'  => $user['full_name'],
-                'role'       => $user['role'],
-                'isLoggedIn' => TRUE
+            'user_id'    => $user['id'], // INI YANG PALING PENTING
+            'username'   => $user['username'],
+            'full_name'  => $user['full_name'],
+            'role'       => $user['role'],
+            'isLoggedIn' => TRUE
             ];
             $session->set($sessionData);
             
-            // Arahkan ke halaman daftar mahasiswa
-            return redirect()->to('/mahasiswa');
+            // Arahkan pengguna berdasarkan rolenya
+            if ($session->get('role') == 'Mahasiswa') {
+                return redirect()->to('/mahasiswa/profil');
+            } else {
+                return redirect()->to('/mahasiswa');
+            }
         } else {
             // Jika gagal, beri pesan error dan kembali ke halaman login
             $session->setFlashdata('msg', 'Username atau Password salah.');

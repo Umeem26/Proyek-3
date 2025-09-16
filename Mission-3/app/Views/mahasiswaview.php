@@ -23,13 +23,10 @@
                     <td><?= esc($m['umur']) ?></td>
                     <td>
                         <a href="<?= base_url('mahasiswa/detail/' . esc($m['nim'])) ?>" class="btn-detail">Detail</a>
-                    </td>
-                    <td>
-                        <a href="<?= base_url('mahasiswa/detail/' . esc($m['nim'])) ?>" class="btn-detail">Detail</a>
                         
                         <?php if(session()->get('role') == 'Admin'): ?>
                             <a href="<?= base_url('mahasiswa/edit/' . esc($m['nim'])) ?>" class="btn-detail" style="background-color:#ffc107;">Edit</a>
-                            <a href="<?= base_url('mahasiswa/delete/' . esc($m['nim'])) ?>" class="btn-detail" style="background-color:#dc3545;" onclick="return confirm('Apakah Anda yakin ingin menghapus data ini?')">Hapus</a>
+                            <a href="<?= base_url('mahasiswa/delete/' . esc($m['id'])) ?>" class="btn-detail" style="background-color:#dc3545;" onclick="return confirm('Apakah Anda yakin ingin menghapus data ini?')">Hapus</a>
                         <?php endif; ?>
                     </td>
                 </tr>

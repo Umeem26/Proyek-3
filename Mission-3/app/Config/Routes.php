@@ -30,5 +30,16 @@ $routes->group('', ['filter' => 'auth'], function($routes) {
     $routes->get('mahasiswa/edit/(:segment)', 'Mahasiswa::edit/$1');
     $routes->post('mahasiswa/update/(:segment)', 'Mahasiswa::update/$1');
 
-    $routes->get('mahasiswa/delete/(:segment)', 'Mahasiswa::delete/$1');
+    $routes->get('mahasiswa/delete/(:num)', 'Mahasiswa::delete/$1');
+
+    $routes->get('mahasiswa/profil', 'Mahasiswa::profil');
+    $routes->get('course', 'CourseController::index');
+    $routes->get('course/new', 'CourseController::new');
+    $routes->post('course/create', 'CourseController::create');
+    $routes->get('course/edit/(:num)', 'CourseController::edit/$1');
+    $routes->put('course/update/(:num)', 'CourseController::update/$1');
+    $routes->get('course/delete/(:num)', 'CourseController::delete/$1');
+
+    $routes->get('enrollment', 'EnrollmentController::index');
+    $routes->get('enrollment/enroll/(:num)', 'EnrollmentController::enroll/$1');
 });

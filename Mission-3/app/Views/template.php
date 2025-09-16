@@ -23,6 +23,8 @@
         .btn-kembali:hover { background-color: #5a6268; }
         .detail-box p { font-size: 1.1em; line-height: 1.6; border-bottom: 1px solid #eee; padding-bottom: 10px; }
         .detail-box p strong { display: inline-block; width: 80px; color: #555; }
+        .alert-success { padding: 15px; background-color: #d4edda; color: #155724; border: 1px solid #c3e6cb; border-radius: 4px; margin-bottom: 20px; text-align: center;}
+        .alert-error { padding: 15px; background-color: #f8d7da; color: #721c24; border: 1px solid #f5c6cb; border-radius: 4px; margin-bottom: 20px; text-align: center;}
     </style>
 </head>
 <body>
@@ -37,9 +39,11 @@
             <a href="<?= base_url('home') ?>">Home</a>
             <?php if ($role == 'Admin'): ?>
                 <a href="<?= base_url('mahasiswa') ?>">Kelola Mahasiswa</a>
+                <a href="<?= base_url('course') ?>">Kelola Mata Kuliah</a> 
             <?php endif; ?>
             <?php if ($role == 'Mahasiswa'): ?>
                 <a href="<?= base_url('mahasiswa/profil') ?>">Profil Saya</a>
+                <a href="<?= base_url('enrollment') ?>">Ambil Mata Kuliah</a> 
             <?php endif; ?>
             <a href="<?= base_url('logout') ?>">Logout (<?= session()->get('username') ?>)</a>
         <?php else: ?>
@@ -47,16 +51,26 @@
             <a href="<?= base_url('login') ?>">Login</a>
         <?php endif; ?>
     </div>
-
     <div class="container">
+        
+        <?php if (session()->getFlashdata('success')): ?>
+            <div class="alert-success">
+                <?= session()->getFlashdata('success') ?>
+            </div>
+        <?php endif; ?>
+
+        <?php if (session()->getFlashdata('error')): ?>
+            <div class="alert-error">
+                <?= session()->getFlashdata('error') ?>
+            </div>
+        <?php endif; ?>
         <div class="content">
             <?= $content ?>
         </div>
     </div>
-
+    </div>
     <div class="footer">
         <p>&copy; <?= date('Y') ?> by: Hisyam Khaeru Umam</p>
     </div>
-
 </body>
 </html>
