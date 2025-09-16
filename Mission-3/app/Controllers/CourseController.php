@@ -1,7 +1,5 @@
 <?php
-
 namespace App\Controllers;
-
 use App\Models\CourseModel;
 
 class CourseController extends BaseController
@@ -11,7 +9,7 @@ class CourseController extends BaseController
     {
         // Hanya Admin yang boleh mengakses
         if (session()->get('role') !== 'Admin') {
-            return redirect()->to('/'); // Redirect ke home jika bukan admin
+            return redirect()->to('/'); 
         }
 
         $model = new CourseModel();
@@ -38,7 +36,6 @@ class CourseController extends BaseController
         return view('template', $data);
     }
 
-    // GANTI NAMA FUNGSI INI DARI store() MENJADI create()
     public function create()
     {
         // Hanya Admin yang boleh mengakses
@@ -57,7 +54,7 @@ class CourseController extends BaseController
             return redirect()->back()->withInput()->with('errors', 'The Kode MK field must contain a unique value.');
         }
 
-        // Jika validasi berhasil, simpan data
+        // Jika validasi berhasil
         $model = new CourseModel();
         $model->save([
             'kode_mk' => $this->request->getPost('kode_mk'),
@@ -105,7 +102,7 @@ class CourseController extends BaseController
             return redirect()->back()->withInput()->with('errors', $this->validator->getErrors());
         }
         
-        // Jika validasi berhasil, lanjutkan update
+        // Jika validasi berhasil
         $model = new CourseModel();
         $dataToUpdate = [
             'kode_mk' => $this->request->getPost('kode_mk'),

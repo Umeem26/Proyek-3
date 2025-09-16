@@ -1,18 +1,13 @@
 <?php
-
 namespace App\Controllers;
-
-use App\Models\mahasiswamodel; // Pastikan nama model Anda 'mahasiswamodel.php'
+use App\Models\mahasiswamodel; 
 
 class Mahasiswa extends BaseController
 {
-    /**
-     * Menampilkan daftar semua mahasiswa.
-     * Hanya bisa diakses oleh Admin.
-     */
+    //Menampilkan daftar semua mahasiswa.
     public function index()
     {
-        // Penjaga: Hanya Admin yang boleh lewat
+        // Hanya Admin yang boleh lewat
         if (session()->get('role') !== 'Admin') {
             return redirect()->to('/mahasiswa/profil');
         }
@@ -27,9 +22,7 @@ class Mahasiswa extends BaseController
         return view('template', $data);
     }
 
-    /**
-     * Menampilkan detail satu mahasiswa.
-     */
+    //Menampilkan detail satu mahasiswa.
     public function detail($id)
     {
         $model = new MahasiswaModel();
@@ -41,9 +34,7 @@ class Mahasiswa extends BaseController
         return view('template', $data);
     }
 
-    /**
-     * Menampilkan halaman profil mahasiswa yang sedang login.
-     */
+    //Menampilkan halaman profil mahasiswa yang sedang login.
     public function profil()
     {
         $model = new MahasiswaModel();
@@ -57,9 +48,7 @@ class Mahasiswa extends BaseController
         return view('template', $data);
     }
 
-    /**
-     * Menampilkan form untuk menambah mahasiswa baru.
-     */
+    //Menampilkan form untuk menambah mahasiswa baru.
     public function create()
     {
         $data = [
@@ -69,9 +58,7 @@ class Mahasiswa extends BaseController
         return view('template', $data);
     }
 
-    /**
-     * Menyimpan data mahasiswa baru ke database.
-     */
+    //Menyimpan data mahasiswa baru ke database.
     public function store()
     {
         // Aturan validasi
@@ -95,10 +82,7 @@ class Mahasiswa extends BaseController
         return redirect()->to('/mahasiswa')->with('success', 'Data mahasiswa berhasil ditambahkan.');
     }
 
-    /**
-     * Menampilkan form untuk mengedit data mahasiswa.
-     * INI ADALAH FUNGSI YANG KITA PERBAIKI.
-     */
+    //Menampilkan form untuk mengedit data mahasiswa.
     public function edit($id)
     {
         $model = new MahasiswaModel();
@@ -112,9 +96,7 @@ class Mahasiswa extends BaseController
         return view('template', $data);
     }
 
-    /**
-     * Memperbarui data mahasiswa di database.
-     */
+    //Memperbarui data mahasiswa di database.
     public function update($id)
     {
         // Aturan validasi
@@ -139,9 +121,7 @@ class Mahasiswa extends BaseController
         return redirect()->to('/mahasiswa')->with('success', 'Data mahasiswa berhasil diperbarui.');
     }
 
-    /**
-     * Menghapus data mahasiswa.
-     */
+    //Menghapus data mahasiswa.
     public function delete($id)
     {
         $model = new MahasiswaModel();

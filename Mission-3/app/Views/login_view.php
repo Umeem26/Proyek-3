@@ -3,7 +3,6 @@
 <head>
     <title>Login | Website Akademik</title>
     <style>
-        /* Anda bisa menggunakan CSS dari file template.php atau buat yang sederhana */
         body { font-family: sans-serif; display: flex; justify-content: center; align-items: center; height: 100vh; background-color: #f4f7f6; }
         .login-container { background-color: #fff; padding: 40px; border-radius: 8px; box-shadow: 0 4px 10px rgba(0,0,0,0.1); width: 300px; }
         .login-container h3 { text-align: center; margin-bottom: 20px; }

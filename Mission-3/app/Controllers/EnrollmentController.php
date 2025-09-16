@@ -1,9 +1,7 @@
 <?php
-
 namespace App\Controllers;
-
 use App\Models\CourseModel;
-use App\Models\TakesModel; // Kita akan buat model ini selanjutnya
+use App\Models\TakesModel; 
 
 class EnrollmentController extends BaseController
 {
@@ -23,7 +21,7 @@ class EnrollmentController extends BaseController
     public function enroll($course_id)
     {
         $takesModel = new TakesModel();
-        $mahasiswa_id = session()->get('user_id'); // Asumsi user_id adalah id mahasiswa
+        $mahasiswa_id = session()->get('user_id'); 
 
         // Cek agar tidak mendaftar dua kali
         $existing = $takesModel->where(['mahasiswa_id' => $mahasiswa_id, 'course_id' => $course_id])->first();

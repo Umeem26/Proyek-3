@@ -1,14 +1,12 @@
 <?php
-
 namespace App\Models;
 use CodeIgniter\Model;
 
 class mahasiswamodel extends Model
 {
     protected $table = 'mahasiswa';
-    protected $primaryKey = 'id'; // Asumsi primary key Anda adalah 'id'
+    protected $primaryKey = 'id';
 
-    // PASTIKAN BARIS INI ADA DAN LENGKAP
     protected $allowedFields = ['nim', 'nama', 'umur', 'user_id'];
 
     public function getmahasiswa()
@@ -23,7 +21,7 @@ class mahasiswamodel extends Model
 
     public function getMahasiswaByUserId($userId)
     {
-        // Cari data di tabel mahasiswa berdasarkan kolom 'user_id'
+        // Cari data di tabel mahasiswa 
         return $this->where(['user_id' => $userId])->first();
     }
 }
