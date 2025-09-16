@@ -28,7 +28,7 @@ $routes->group('', ['filter' => 'auth'], function($routes) {
     $routes->post('mahasiswa/store', 'Mahasiswa::store');
 
     $routes->get('mahasiswa/edit/(:segment)', 'Mahasiswa::edit/$1');
-    $routes->post('mahasiswa/update/(:segment)', 'Mahasiswa::update/$1');
+    $routes->put('mahasiswa/update/(:num)', 'Mahasiswa::update/$1');
 
     $routes->get('mahasiswa/delete/(:num)', 'Mahasiswa::delete/$1');
 
