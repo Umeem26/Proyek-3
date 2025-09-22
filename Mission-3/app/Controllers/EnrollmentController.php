@@ -9,12 +9,21 @@ class EnrollmentController extends BaseController
     public function index()
     {
         $courseModel = new CourseModel();
+        $takesModel = new TakesModel();
+        $mahasiswa_id = session()->get('user_id');
+
+        // Ambil ID dari semua mata kuliah yang sudah diambil oleh mahasiswa ini
+        $takenCoursesRaw = $takesModel->where('mahasiswa_id', $mahasiswa_id)->findAll();
+        $takenCourseIds = array_column($takenCoursesRaw, 'course_id');
 
         $data = [
-            'title'   => 'Ambil Mata Kuliah',
-            'content' => view('enrollment_view', ['courses' => $courseModel->findAll()])
+            'title'          => 'Ambil Mata Kuliah',
+            'courses'        => $courseModel->findAll(),
+            'takenCourseIds' => $takenCourseIds // Kirim daftar ID ke view
         ];
-        return view('template', $data);
+        
+        // Ganti view yang dipanggil agar sesuai
+        return view('template', ['content' => view('enrollment_view', $data)]);
     }
 
     // Memproses pendaftaran

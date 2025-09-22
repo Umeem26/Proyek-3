@@ -2,10 +2,10 @@
 <p>Berikut adalah daftar mahasiswa yang terdaftar di sistem.</p>
 
 <?php if(session()->get('role') == 'Admin'): ?>
-    <a href="<?= base_url('mahasiswa/create') ?>" class="btn-kembali" style="margin-bottom: 15px; background-color: #007bff;">+ Tambah Mahasiswa Baru</a>
+    <a href="<?= base_url('mahasiswa/create') ?>" class="btn btn-primary" style="margin-bottom: 1rem;">+ Tambah Mahasiswa Baru</a>
 <?php endif; ?>
 
-<table class="table-mahasiswa">
+<table class="table">
     <thead>
         <tr>
             <th>NIM</th>
@@ -22,18 +22,18 @@
                     <td><?= esc($m['nama']) ?></td>
                     <td><?= esc($m['umur']) ?></td>
                     <td>
-                        <a href="<?= base_url('mahasiswa/detail/' . $m['id']) ?>" class="btn-detail">Detail</a>
+                        <a href="<?= base_url('mahasiswa/detail/' . $m['id']) ?>" class="btn btn-sm btn-info">Detail</a>
                         
                         <?php if(session()->get('role') == 'Admin'): ?>
-                            <a href="<?= base_url('mahasiswa/edit/' . $m['id']) ?>" class="btn-detail" style="background-color:#ffc107;">Edit</a>
-                            <a href="<?= base_url('mahasiswa/delete/' . $m['id']) ?>" class="btn-detail" style="background-color:#dc3545;" onclick="return confirm('Apakah Anda yakin ingin menghapus data ini?')">Hapus</a>
+                            <a href="<?= base_url('mahasiswa/edit/' . $m['id']) ?>" class="btn btn-sm btn-warning">Edit</a>
+                            <a href="<?= base_url('mahasiswa/delete/' . $m['id']) ?>" class="btn btn-sm btn-danger" onclick="return confirm('Apakah Anda yakin ingin menghapus data ini?')">Hapus</a>
                         <?php endif; ?>
                     </td>
                 </tr>
             <?php endforeach; ?>
         <?php else: ?>
             <tr>
-                <td colspan="4">Belum ada data mahasiswa</td>
+                <td colspan="4" style="text-align: center;">Belum ada data mahasiswa</td>
             </tr>
         <?php endif; ?>
     </tbody>

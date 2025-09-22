@@ -1,15 +1,18 @@
 <?php
+
 namespace App\Controllers;
+
 use App\Models\CourseModel;
 
 class CourseController extends BaseController
 {
-    // Menampilkan daftar semua mata kuliah
+    /**
+     * Menampilkan daftar semua mata kuliah.
+     */
     public function index()
     {
-        // Hanya Admin yang boleh mengakses
         if (session()->get('role') !== 'Admin') {
-            return redirect()->to('/'); 
+            return redirect()->to('/');
         }
 
         $model = new CourseModel();
@@ -22,28 +25,32 @@ class CourseController extends BaseController
         return view('template', $data);
     }
 
+    /**
+     * Menampilkan form untuk menambah mata kuliah baru.
+     */
     public function new()
     {
-        // Hanya Admin yang boleh mengakses
         if (session()->get('role') !== 'Admin') {
             return redirect()->to('/');
         }
         
         $data = [
             'title'   => 'Tambah Mata Kuliah',
+            // PASTIKAN VIEW MENGARAH KE 'course_create_view'
             'content' => view('course_create_view')
         ];
         return view('template', $data);
     }
 
+    /**
+     * Menyimpan data mata kuliah baru.
+     */
     public function create()
     {
-        // Hanya Admin yang boleh mengakses
         if (session()->get('role') !== 'Admin') {
             return redirect()->to('/');
         }
 
-        // Aturan validasi
         $rules = [
             'kode_mk' => 'required|is_unique[courses.kode_mk]',
             'nama_mk' => 'required',
@@ -51,10 +58,9 @@ class CourseController extends BaseController
         ];
 
         if (! $this->validate($rules)) {
-            return redirect()->back()->withInput()->with('errors', 'The Kode MK field must contain a unique value.');
+            return redirect()->back()->withInput()->with('errors', $this->validator->getErrors());
         }
 
-        // Jika validasi berhasil
         $model = new CourseModel();
         $model->save([
             'kode_mk' => $this->request->getPost('kode_mk'),
@@ -65,10 +71,11 @@ class CourseController extends BaseController
         return redirect()->to('/course')->with('success', 'Data mata kuliah berhasil ditambahkan.');
     }
 
-    // Menampilkan form untuk mengedit mata kuliah
+    /**
+     * Menampilkan form untuk mengedit mata kuliah.
+     */
     public function edit($id = null)
     {
-        // Hanya Admin yang boleh mengakses
         if (session()->get('role') !== 'Admin') {
             return redirect()->to('/');
         }
@@ -83,15 +90,15 @@ class CourseController extends BaseController
         return view('template', $data);
     }
 
-    // Memperbarui data mata kuliah
+    /**
+     * Memperbarui data mata kuliah.
+     */
     public function update($id = null)
     {
-        // Hanya Admin yang boleh mengakses
         if (session()->get('role') !== 'Admin') {
             return redirect()->to('/');
         }
 
-        // Aturan validasi
         $rules = [
             'kode_mk' => 'required|is_unique[courses.kode_mk,id,' . $id . ']',
             'nama_mk' => 'required',
@@ -102,7 +109,6 @@ class CourseController extends BaseController
             return redirect()->back()->withInput()->with('errors', $this->validator->getErrors());
         }
         
-        // Jika validasi berhasil
         $model = new CourseModel();
         $dataToUpdate = [
             'kode_mk' => $this->request->getPost('kode_mk'),
@@ -114,10 +120,11 @@ class CourseController extends BaseController
         return redirect()->to('/course')->with('success', 'Data mata kuliah berhasil diperbarui.');
     }
 
-    // Menghapus data mata kuliah
+    /**
+     * Menghapus data mata kuliah.
+     */
     public function delete($id = null)
     {
-        // Hanya Admin yang boleh mengakses
         if (session()->get('role') !== 'Admin') {
             return redirect()->to('/');
         }

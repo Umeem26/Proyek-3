@@ -1,7 +1,7 @@
 <h3>Tambah Data Mahasiswa Baru</h3>
 
 <?php if(session()->has('errors')): ?>
-    <div style="background-color:#f8d7da; color:#721c24; border:1px solid #f5c6cb; padding:15px; border-radius:4px; margin-bottom:15px;">
+    <div class="alert alert-danger">
         <strong>Error Validasi:</strong>
         <ul>
             <?php foreach(session('errors') as $error): ?>
@@ -11,28 +11,20 @@
     </div>
 <?php endif ?>
 
-
-<form action="<?= base_url('mahasiswa/store') ?>" method="post">
+<form action="<?= base_url('mahasiswa/store') ?>" method="post" style="margin-top: 1.5rem;">
     <?= csrf_field() ?>
-
-    <p>
-        <label for="nim">NIM</label><br>
-        <input type="text" name="nim" id="nim" value="<?= old('nim') ?>">
-    </p>
-    <p>
-        <label for="nama">Nama</label><br>
-        <input type="text" name="nama" id="nama" value="<?= old('nama') ?>">
-    </p>
-    <p>
-        <label for="umur">Umur</label><br>
-        <input type="number" name="umur" id="umur" value="<?= old('umur') ?>">
-    </p>
-    <p>
-        <button type="submit" class="btn-kembali" style="background-color: #007bff;">Simpan</button>
-        <a href="<?= base_url('mahasiswa') ?>" class="btn-kembali">Batal</a>
-    </p>
+    <div class="form-group">
+        <label for="nim" class="form-label">NIM</label>
+        <input type="text" class="form-control" name="nim" id="nim" value="<?= old('nim') ?>">
+    </div>
+    <div class="form-group">
+        <label for="nama" class="form-label">Nama</label>
+        <input type="text" class="form-control" name="nama" id="nama" value="<?= old('nama') ?>">
+    </div>
+    <div class="form-group">
+        <label for="umur" class="form-label">Umur</label>
+        <input type="number" class="form-control" name="umur" id="umur" value="<?= old('umur') ?>">
+    </div>
+    <button type="submit" class="btn btn-primary">Simpan</button>
+    <a href="<?= base_url('mahasiswa') ?>" class="btn btn-secondary">Batal</a>
 </form>
-
-<style>
-    form input { width: 50%; padding: 8px; margin-top: 5px; }
-</style>

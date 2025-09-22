@@ -1,7 +1,7 @@
-<h3>Ambil Mata Kuliah</h3>
+<h3 class="mb-3">Ambil Mata Kuliah</h3>
 <p>Silakan pilih mata kuliah yang ingin Anda ambil semester ini.</p>
 
-<table class="table-mahasiswa">
+<table class="table">
     <thead>
         <tr>
             <th>Kode MK</th>
@@ -17,7 +17,11 @@
                 <td><?= esc($course['nama_mk']) ?></td>
                 <td><?= esc($course['sks']) ?></td>
                 <td>
-                    <a href="<?= base_url('enrollment/enroll/' . $course['id']) ?>" class="btn-detail">Ambil</a>
+                    <?php if (in_array($course['id'], $takenCourseIds)): ?>
+                        <span class="btn btn-sm btn-success" style="cursor: default;">Sudah Diambil</span>
+                    <?php else: ?>
+                        <a href="<?= base_url('enrollment/enroll/' . $course['id']) ?>" class="btn btn-sm btn-primary">Ambil</a>
+                    <?php endif; ?>
                 </td>
             </tr>
         <?php endforeach; ?>

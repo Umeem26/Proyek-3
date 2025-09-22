@@ -1,9 +1,9 @@
 <h3>Daftar Mata Kuliah</h3>
 <p>Berikut adalah daftar mata kuliah yang tersedia.</p>
 
-<a href="<?= base_url('course/new') ?>" class="btn-kembali" style="margin-bottom: 15px; background-color: #007bff;">+ Tambah Mata Kuliah Baru</a>
+<a href="<?= base_url('course/new') ?>" class="btn btn-primary" style="margin-bottom: 1rem;">+ Tambah Mata Kuliah Baru</a>
 
-<table class="table-mahasiswa">
+<table class="table">
     <thead>
         <tr>
             <th>Kode MK</th>
@@ -20,15 +20,15 @@
                     <td><?= esc($course['nama_mk']) ?></td>
                     <td><?= esc($course['sks']) ?></td>
                     <td>
-                        <a href="<?= base_url('course/edit/' . $course['id']) ?>" class="btn-detail" style="background-color:#ffc107;">Edit</a>
-                        <a href="<?= base_url('course/delete/' . $course['id']) ?>" class="btn-detail" style="background-color:#dc3545;" onclick="return confirm('Apakah Anda yakin ingin menghapus data ini?')">Hapus</a>
+                        <a href="<?= base_url('course/edit/' . $course['id']) ?>" class="btn btn-sm btn-warning">Edit</a>
+                        <a href="<?= base_url('course/delete/' . $course['id']) ?>" class="btn btn-sm btn-danger" onclick="return confirm('Apakah Anda yakin ingin menghapus data ini?')">Hapus</a>
                     </td>
                 </tr>
             <?php endforeach; ?>
         <?php else: ?>
             <tr>
-                <td colspan="4">Belum ada data mata kuliah</td>
+                <td colspan="4" style="text-align: center;">Belum ada data mata kuliah</td>
             </tr>
         <?php endif; ?>
     </tbody>
-</table>        
+</table>
