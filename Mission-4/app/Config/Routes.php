@@ -42,4 +42,6 @@ $routes->group('', ['filter' => 'auth'], function($routes) {
 
     $routes->get('enrollment', 'EnrollmentController::index');
     $routes->post('enrollment/process', 'EnrollmentController::processEnrollment');
+
+    $routes->get('my-courses', 'MyCourseController::index');
 });

@@ -177,11 +177,12 @@
                         <li class="nav-item"><a class="nav-link" href="<?= base_url('mahasiswa') ?>">Kelola Mahasiswa</a></li>
                         <li class="nav-item"><a class="nav-link" href="<?= base_url('course') ?>">Kelola Mata Kuliah</a></li>
                     <?php endif; ?>
+
                     <?php if ($role == 'Mahasiswa'): ?>
                         <li class="nav-item"><a class="nav-link" href="<?= base_url('mahasiswa/profil') ?>">Profil Saya</a></li>
                         <li class="nav-item"><a class="nav-link" href="<?= base_url('enrollment') ?>">Ambil Mata Kuliah</a></li>
-                    <?php endif; ?>
-                <?php else: ?>
+                        <li class="nav-item"><a class="nav-link" href="<?= base_url('my-courses') ?>">Mata Kuliah Saya</a></li> <?php endif; ?>
+                    <?php else: ?>
                     <li class="nav-item"><a class="nav-link" href="<?= base_url('home') ?>">Home</a></li>
                 <?php endif; ?>
             </ul>
@@ -210,12 +211,12 @@
             <?php endif; ?>
 
             <?= $content ?>
+
         </div>
     </main>
 
     <footer class="footer">
-        <p>&copy; <?= date('Y') ?> by: Hisyam Khaeru Umam</p>
-    </footer>
+        </footer>
 
     <script>
         // --- Skrip untuk Menu Aktif ---
