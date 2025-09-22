@@ -41,5 +41,5 @@ $routes->group('', ['filter' => 'auth'], function($routes) {
     $routes->get('course/delete/(:num)', 'CourseController::delete/$1');
 
     $routes->get('enrollment', 'EnrollmentController::index');
-    $routes->get('enrollment/enroll/(:num)', 'EnrollmentController::enroll/$1');
+    $routes->post('enrollment/process', 'EnrollmentController::processEnrollment');
 });

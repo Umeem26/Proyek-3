@@ -28,3 +28,42 @@
     <button type="submit" class="btn btn-primary">Simpan</button>
     <a href="<?= base_url('mahasiswa') ?>" class="btn btn-secondary">Batal</a>
 </form>
+<script>
+    // Pilih form yang akan divalidasi
+    const form = document.querySelector('form');
+
+    form.addEventListener('submit', function(event) {
+        // Hentikan pengiriman form untuk sementara
+        event.preventDefault();
+
+        let isValid = true;
+        
+        // Hapus semua pesan error yang mungkin sudah ada
+        document.querySelectorAll('.form-error-message').forEach(el => el.remove());
+        document.querySelectorAll('.form-control').forEach(el => el.classList.remove('is-invalid'));
+
+        // Dapatkan semua input di dalam form
+        const inputs = form.querySelectorAll('.form-control');
+
+        inputs.forEach(input => {
+            // Jika input kosong
+            if (input.value.trim() === '') {
+                isValid = false;
+
+                // Tambahkan border merah
+                input.classList.add('is-invalid');
+
+                // Buat dan tampilkan pesan error
+                const errorMessage = document.createElement('div');
+                errorMessage.className = 'form-error-message';
+                errorMessage.textContent = 'Field ini tidak boleh kosong.';
+                input.parentNode.appendChild(errorMessage);
+            }
+        });
+
+        // Jika semua input sudah terisi, kirim form
+        if (isValid) {
+            form.submit();
+        }
+    });
+</script>

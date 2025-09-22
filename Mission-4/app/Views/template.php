@@ -63,6 +63,11 @@
             color: #1d4ed8;
             border-bottom-color: #1d4ed8;
         }
+        .nav-item a.active {
+            color: #1d4ed8;
+            border-bottom-color: #1d4ed8;
+            font-weight: 700;
+        }
         
         /* --- Konten Utama --- */
         .container {
@@ -167,24 +172,24 @@
             <ul class="nav-list">
                 <?php if (session()->get('isLoggedIn')): ?>
                     <?php $role = session()->get('role'); ?>
-                    <li class="nav-item"><a href="<?= base_url('home') ?>">Home</a></li>
+                    <li class="nav-item"><a class="nav-link" href="<?= base_url('home') ?>">Home</a></li>
                     <?php if ($role == 'Admin'): ?>
-                        <li class="nav-item"><a href="<?= base_url('mahasiswa') ?>">Kelola Mahasiswa</a></li>
-                        <li class="nav-item"><a href="<?= base_url('course') ?>">Kelola Mata Kuliah</a></li>
+                        <li class="nav-item"><a class="nav-link" href="<?= base_url('mahasiswa') ?>">Kelola Mahasiswa</a></li>
+                        <li class="nav-item"><a class="nav-link" href="<?= base_url('course') ?>">Kelola Mata Kuliah</a></li>
                     <?php endif; ?>
                     <?php if ($role == 'Mahasiswa'): ?>
-                        <li class="nav-item"><a href="<?= base_url('mahasiswa/profil') ?>">Profil Saya</a></li>
-                        <li class="nav-item"><a href="<?= base_url('enrollment') ?>">Ambil Mata Kuliah</a></li>
+                        <li class="nav-item"><a class="nav-link" href="<?= base_url('mahasiswa/profil') ?>">Profil Saya</a></li>
+                        <li class="nav-item"><a class="nav-link" href="<?= base_url('enrollment') ?>">Ambil Mata Kuliah</a></li>
                     <?php endif; ?>
                 <?php else: ?>
-                    <li class="nav-item"><a href="<?= base_url('home') ?>">Home</a></li>
+                    <li class="nav-item"><a class="nav-link" href="<?= base_url('home') ?>">Home</a></li>
                 <?php endif; ?>
             </ul>
             <ul class="nav-list">
                 <?php if (session()->get('isLoggedIn')): ?>
-                    <li class="nav-item"><a href="<?= base_url('logout') ?>">Logout (<?= session()->get('username') ?>)</a></li>
+                    <li class="nav-item"><a class="nav-link" href="<?= base_url('logout') ?>">Logout (<?= session()->get('username') ?>)</a></li>
                 <?php else: ?>
-                    <li class="nav-item"><a href="<?= base_url('login') ?>">Login</a></li>
+                    <li class="nav-item"><a class="nav-link" href="<?= base_url('login') ?>">Login</a></li>
                 <?php endif; ?>
             </ul>
         </div>
@@ -212,5 +217,20 @@
         <p>&copy; <?= date('Y') ?> by: Hisyam Khaeru Umam</p>
     </footer>
 
+    <script>
+        // --- Skrip untuk Menu Aktif ---
+        document.addEventListener("DOMContentLoaded", function() {
+            const currentPath = window.location.pathname;
+            const navLinks = document.querySelectorAll('.nav-list .nav-link');
+
+            navLinks.forEach(link => {
+                const linkPath = new URL(link.href).pathname;
+                
+                if (linkPath === currentPath) {
+                    link.classList.add('active');
+                }
+            });
+        });
+    </script>
 </body>
 </html>
